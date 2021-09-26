@@ -1,0 +1,84 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<style>
+    marquee{
+        margin-top: 5px;
+        margin-top: 25px;
+        font-size: large;
+        font-family:'Times New Roman', Times, serif;
+        background-color: yellow;
+        font-weight: bold;
+    }
+    .usersignup-form{
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        margin-top: 15px;
+        padding: 15px;
+        font-size: larger;
+        font-weight: bold;
+    }
+    .submit{
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        margin: auto;
+        display: block;
+        padding: 15px;
+        margin-top: 25px;
+        border-radius: 15px;
+        border: black;
+    }
+</style>
+
+<marquee>
+    <i>User SignUp</i>
+</marquee>
+
+<body>
+    <form method="POST" class="usersignup-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if error %}
+            <div class="alert alert-danger">
+                <strong>{{ error }}</strong>
+            </div>
+        {% endif %}
+        {{ form.as_p }}
+        <!-- <div class="gender">
+            Gender:
+            <br>
+            <input type='radio' id="male" name="gender" value="male">
+            <label for="male">Male</label>
+            <br>
+            <input type='radio' id="female" name="gender" value="female">
+            <label for="female">Female</label>
+            <br>
+            <input type='radio' id="other" name="gender" value="other">
+            <label for="other">Other</label>
+            <button type="submit" class='submit'>SignUp</button>
+        </div> -->
+        <button type="submit" class='submit'>SignUp</button>
+    </form>
+</body>
+
+
+{% include 'footer.html' %}
+
+{% ifequal mistake "no" %}
+    <script>
+        alert("Signup Successful")
+        window.location = ('{% url "user_login" %}')
+    </script>
+{% endifequal %}
+
+{% ifequal mistake "yes" %}
+    <script>
+        alert("Something Went Wrong!")
+    </script>
+{% endifequal %}
+
+{% endblock %}

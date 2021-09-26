@@ -1,0 +1,87 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<style>
+    marquee{
+        margin-top: 5px;
+        margin-top: 25px;
+        font-size: large;
+        font-family:'Times New Roman', Times, serif;
+        background-color: yellow;
+        font-weight: bold;
+    }
+    .recruiter-form{
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        margin-top: 15px;
+        padding: 15px;
+        font-size: larger;
+        font-weight: bold;
+    }
+    .submit{
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        margin: auto;
+        display: block;
+        padding: 15px;
+        margin-top: 25px;
+        border-radius: 15px;
+        border: black;
+    }
+    a{
+        color: black;
+    }
+</style>
+
+<marquee>
+    <i>Recruiter Login</i>
+</marquee>
+
+<body>
+    <form method="POST" class="recruiter-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class='submit'>SignIn</button>
+        <br>
+        OR
+        <br>
+        <a href="{% url 'recruiter_signup' %}">CREATE AN ACCOUNT</a>
+    </form>
+</body>
+
+{% include 'footer.html' %}
+
+{% ifequal error "no" %}
+<script>
+    alert("SignIn Successful")
+    window.location = ('{% url "recruiter_home" %}')
+</script>
+{% endifequal %}
+
+{% ifequal status "pending" %}
+<script>
+    alert("Status is Pending!")
+    window.location = ('{% url "recruiter_login" %}')
+</script>
+{% endifequal %}
+
+{% ifequal status "rejected" %}
+<script>
+    alert("Status is Rejected!")
+    window.location = ('{% url "recruiter_login" %}')
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert("Invalid Login Credentials")
+    window.location = ('{% url "recruiter_login" %}')
+</script>
+{% endifequal %}
+
+{% endblock %}

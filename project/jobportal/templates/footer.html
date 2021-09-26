@@ -1,0 +1,74 @@
+{% load static %}
+
+<style>
+    .card{
+        background-color: black;
+        color: white;
+        height: 420px;
+        margin: auto;
+        margin-top: 25px;
+        font-size: 25px;
+        margin-bottom: 25px;
+    }
+    .card-title{
+        font-size: 35px;
+    }
+    .card-body{
+        width: fit-content;
+    }
+    input {
+        padding: 10px;
+    }
+    .footer-submit {
+        background-color: silver;
+        border-radius: 30px;
+        padding: 10px;
+        font-family: fantasy;
+        border: solid gray 5px;
+        margin-top: 15px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Contact Information</h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><i class="fa fa-map-marker"></i> Ahmedabad, Gujarat, India</h6>
+                  <p class="card-text"><i class="fa fa-envelope"></i> jinalvyas.ict19@gmail.com</p>
+                  <p class="card-text"><i class="fa fa-phone"></i> +91 8200841662</p>
+                  <p class="card-text"><i class="fa fa-internet-explorer"></i> www.jinalvyas.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Online Placement</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nulla ut auctor augue, in elementum turpis.
+                        Nulla facilisi. Sed non arcu justo.
+                        Maecenas at est lobortis, viverra metus sed, volutpat turpis.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Newsletter</h5>
+                    <p class="card-text">Subscribe to receive regular updates regarding latest recruitments and much more!</p>
+                    <form>
+                        <div style="text-align: center; margin-top: 10px;">
+                            <input type="text" placeholder="Email">
+                        </div>
+                        <div style="text-align: center; margin-top: 10px;">
+                            <button type="submit" class="footer-submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

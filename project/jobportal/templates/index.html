@@ -1,0 +1,175 @@
+{% load static %}
+
+{% block body %}
+
+    {% include 'navigation.html' %}
+
+    <style>
+        #company{
+            width: 50%;
+            height: 140px;
+            margin-top: 50px;
+        }
+        .intro{
+            text-align: center;
+            padding: 5px;
+            font-family: cursive;
+            margin-top: 50px;
+            font-weight: bolder;
+            font-style: italic;
+            text-decoration: underline;
+        }
+        #employees{
+            border-radius: 50%;
+            margin-top: 30px;
+            width: 40%;
+            height: 200px;
+        }
+        #employees:hover{
+            border-radius: 10px;
+        }
+        .students{
+            text-align: center;
+            padding: 5px;
+            font-family: cursive;
+            margin-top: 50px;
+            font-weight: bolder;
+            font-style: italic;
+            background-color: gray;
+        }
+        .content{
+            text-align: center;
+        }
+    </style>
+
+    <div class="container-fluid">
+        <div class="intro">
+            <h1>Hello, welcome to our website!</h1>
+            <br>
+            <h1>OUR PARTNERS</h1>
+            <div class="row">
+                <div class="col">
+                    <img src="{% static 'images/google.png' %}" id="company">
+
+                </div>
+                <div class="col">
+                    <img src="{% static 'images/amazon.png' %}" id="company">
+                </div>
+                <div class="col">
+                    <img src="{% static 'images/facebook.png' %}" id="company">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <img src="{% static 'images/apple.png' %}" id="company" style="width: 25%">
+                </div>
+                <div class="col">
+                    <img src="{% static 'images/microsoft.png' %}" id="company">
+                </div>
+                <div class="col">
+                    <img src="{% static 'images/ibm.png' %}" id="company">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="students">
+            <h1 style="text-decoration: underline;">OUR PLACED STUDENTS</h1>
+            <div class="row">
+                <div class="col">
+                    <img src="{% static 'images/doraemon.png' %}" id="employees">
+                    <div class="content">
+                        <p>Disney</p>
+                    </div>
+                    <h1>Doraemon</h1>
+                </div>
+                <div class="col">
+                    <img src="{% static 'images/nobita.jpeg' %}" id="employees">
+                    <div class="content">
+                        <p>Disney</p>
+                    </div>
+                    <h1>Nobita</h1>
+                </div>
+                <div class="col">
+                    <img src="{% static 'images/shizuka.png' %}" id="employees">
+                    <div class="content">
+                        <p>Disney</p>
+                    </div>
+                    <h1>Shizuka</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <img src="{% static 'images/shinchan.jpeg' %}" id="employees">
+                    <div class="content">
+                        <p>Hungama</p>
+                    </div>
+                    <h1>ShinChan</h1>
+                </div>
+                <div class="col">
+                    <img src="{% static 'images/kazama.jpg' %}" id="employees">
+                    <div class="content">
+                        <p>Hungama</p>
+                    </div>
+                    <h1>Kazama</h1>
+                </div>
+                <div class="col">
+                    <img src="{% static 'images/bheem.jpeg' %}" id="employees">
+                    <div class="content">
+                        <p>Pogo</p>
+                    </div>
+                    <h1>Bheem</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <img src="{% static 'images/tom&jerry.jpeg' %}" id="employees">
+                    <div class="content">
+                        <p>Cartoon Network</p>
+                    </div>
+                    <h1>Tom & Jerry</h1>
+                </div>
+                <div class="col">
+                    <img src="{% static 'images/motupatlu.jpeg' %}" id="employees">
+                    <div class="content">
+                        <p>Nickelodeon</p>
+                    </div>
+                    <h1>Motu & Patlu</h1>
+                </div>
+                <div class="col">
+                    <img src="{% static 'images/mickeymouse.png' %}" id="employees">
+                    <div class="content">
+                        <p>Disney Kids</p>
+                    </div>
+                    <h1>Mickey Mouse</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <img src="{% static 'images/gian.jpeg' %}" id="employees">
+                    <div class="content">
+                        <p>Disney</p>
+                    </div>
+                    <h1>Gian</h1>
+                </div>
+                <div class="col">
+                    <img src="{% static 'images/sunio.jpeg' %}" id="employees">
+                    <div class="content">
+                        <p>Disney</p>
+                    </div>
+                    <h1>Sunio</h1>
+                </div>
+                <div class="col">
+                    <img src="{% static 'images/dekisuki.jpeg' %}" id="employees">
+                    <div class="content">
+                        <p>Disney</p>
+                    </div>
+                    <h1>Dekisuki</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+
+{% endblock %}

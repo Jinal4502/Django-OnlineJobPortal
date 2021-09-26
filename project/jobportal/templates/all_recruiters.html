@@ -1,0 +1,77 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'admin_navigation.html' %}
+
+<style>
+    marquee{
+        margin-top: 5px;
+        margin-top: 25px;
+        font-size: large;
+        font-family:'Times New Roman', Times, serif;
+        background-color: yellow;
+        font-weight: bold;
+    }
+    table{
+        border-width: medium;
+        font-size: 20px;
+    }
+    #user{
+        border-radius: 30px;
+        width: 50px;
+        height: 50px;
+    }
+</style>
+
+<marquee>
+    <i>List of All Recruiters</i>
+</marquee>
+<hr>
+
+<div class="container">
+    <table class="table table-hover" id="example">
+        <thead>
+            <tr style="background-color: darkblue; color: white">
+                <th>S.No.</th>
+                <th>Image</th>
+                <th>Full Name</th>
+                <th>Email ID</th>
+                <th>Contact</th>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                {% if i.image %}
+                    <td><img src = "{{ i.image.url }}" id="user"></td>
+                {% else %}
+                    <td>No Image Received</td>
+                {% endif %}
+                <td>{{ i.user.first_name }} {{ i.user.last_name }}</td>
+                <td>{{ i.user.username }}</td>
+                <td>{{ i.mobile }}</td>
+                <td>{{ i.company }}</td>
+                <td>{{ i.status }}</td>
+                <td>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown"  style="color: black">Change Status</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'accept_recruiter' i.id %}">Accept</a>
+                            <a class="dropdown-item" href="{% url 'reject_recruiter' i.id %}">Reject</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% include 'footer.html' %}
+
+{% endblock %}

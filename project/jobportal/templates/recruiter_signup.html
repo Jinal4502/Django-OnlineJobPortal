@@ -1,0 +1,70 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<style>
+    marquee{
+        margin-top: 5px;
+        margin-top: 25px;
+        font-size: large;
+        font-family:'Times New Roman', Times, serif;
+        background-color: yellow;
+        font-weight: bold;
+    }
+    .recruitersignup-form{
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        margin-top: 15px;
+        padding: 15px;
+        font-size: larger;
+        font-weight: bold;
+    }
+    .submit{
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        margin: auto;
+        display: block;
+        padding: 15px;
+        margin-top: 25px;
+        border-radius: 15px;
+        border: black;
+    }
+</style>
+
+<marquee>
+    <i>Recruiter SignUp</i>
+</marquee>
+
+<body>
+    <form method="POST" class="recruitersignup-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if error %}
+            <div class="alert alert-danger">
+                <strong>{{ error }}</strong>
+            </div>
+        {% endif %}
+        {{ form.as_p }}
+        <button type="submit" class='submit'>SignUp</button>
+    </form>
+</body>
+
+{% include 'footer.html' %}
+
+{% ifequal mistake "no" %}
+    <script>
+        alert("Signup Successful")
+        window.location = ('{% url "recruiter_login" %}')
+    </script>
+{% endifequal %}
+
+{% ifequal mistake "yes" %}
+    <script>
+        alert("Something Went Wrong!")
+    </script>
+{% endifequal %}
+
+{% endblock %}

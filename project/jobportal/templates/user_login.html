@@ -1,0 +1,73 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<style>
+    marquee{
+        margin-top: 5px;
+        margin-top: 25px;
+        font-size: large;
+        font-family:'Times New Roman', Times, serif;
+        background-color: yellow;
+        font-weight: bold;
+    }
+    .user-form{
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        margin-top: 15px;
+        padding: 15px;
+        font-size: larger;
+        font-weight: bold;
+    }
+    .submit{
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        margin: auto;
+        display: block;
+        padding: 15px;
+        margin-top: 25px;
+        border-radius: 15px;
+        border: black;
+    }
+    a{
+        color: black;
+    }
+</style>
+
+<marquee>
+    <i>User Login</i>
+</marquee>
+
+<body>
+    <form method="POST" class="user-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class='submit'>SignIn</button>
+        <br>
+        OR
+        <br>
+        <a href="{% url 'user_signup' %}">CREATE AN ACCOUNT</a>
+    </form>
+</body>
+
+{% include 'footer.html' %}
+
+{% ifequal error "no" %}
+<script>
+    alert("SignIn Successful")
+    window.location = ('{% url "user_home" %}')
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert("Invalid Login Credentials")
+    window.location = ('{% url "user_login" %}')
+</script>
+{% endifequal %}
+
+{% endblock %}
