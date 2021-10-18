@@ -4,7 +4,7 @@
     .card{
         background-color: black;
         color: white;
-        height: 420px;
+        height: 430px;
         margin: auto;
         margin-top: 25px;
         font-size: 25px;
@@ -26,6 +26,13 @@
         font-family: fantasy;
         border: solid gray 5px;
         margin-top: 15px;
+    }
+    h1{
+        text-align: center;
+        color: blue;
+        margin-top: 25px;
+        font-style: italic;
+        background-color: whitesmoke;
     }
 </style>
 
@@ -59,12 +66,16 @@
                 <div class="card-body">
                     <h5 class="card-title">Newsletter</h5>
                     <p class="card-text">Subscribe to receive regular updates regarding latest recruitments and much more!</p>
-                    <form>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
                         <div style="text-align: center; margin-top: 10px;">
-                            <input type="text" placeholder="Email">
+                            <input type="text" placeholder="Username" name='username'>
                         </div>
                         <div style="text-align: center; margin-top: 10px;">
-                            <button type="submit" class="footer-submit">Subscribe</button>
+                            <input type="text" placeholder="Email" name='receipent'>
+                        </div>
+                        <div style="text-align: center; margin-top: 10px;">
+                            <button type="submit" class="footer-submit">Subscribe/</button>
                         </div>
                     </form>
                 </div>
@@ -72,3 +83,4 @@
         </div>
     </div>
 </div>
+<h1>Your <b>Dream Job</b> is Waiting for <b>YOU</b>!!</h1>

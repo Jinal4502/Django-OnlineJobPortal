@@ -32,6 +32,12 @@
         .dropdown:hover .dropdown-menu {
             display: block;
         }
+        .active {
+            color: blue;
+            font-weight: bold;
+            background-color: white;
+            border-radius: 10px;
+        }
     </style>
     <script>
         $(document).ready(function() {
@@ -60,7 +66,7 @@
                     <img src="{% static 'images/jobportalimg.jpeg' %}">
                 </div>
                 <div class="col" style="margin: auto;">
-                    <span style="font-size: 40px; font-weight: bolder; color: red;">🎊 Get what you deserve! 🎊</span>
+                    <span style="font-size: 45px; font-weight: bolder; border: 5px solid blue; color: blue; background-color: white; font-family: 'Times New Roman', Times, serif; padding:15px;">Find the career you deserve!</span>
                 </div>
             </div>
         </div>
@@ -72,7 +78,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'admin_home' %}"><i class="fa fa-home"></i> Home</a>
+                    <a class="nav-link {% if request.path == '/admin_home' %} active {% endif %}" href="{% url 'admin_home' %}"><i class="fa fa-home"></i> Home</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-users"></i> Recruiter Requests</a>
@@ -84,15 +90,21 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'view_users' %}"><i class="fa fa-user"></i> View Users</a>
+                    <a class="nav-link {% if request.path == '/views_users' %} active {% endif %}" href="{% url 'view_users' %}"><i class="fa fa-user"></i> View Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=""><i class="fa fa-key"></i> Change Password</a>
+                    <a class="nav-link {% if request.path == '/newsletter_subscibers' %} active {% endif %}" href="{% url 'newsletter_subscribers' %}"><i class="fa fa-user"></i> Newsletter Subscibers</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'log_out' %}"><i class="fa fa-sign-out"></i> Logout</a>
+                    <a class="nav-link {% if request.path == '/admin_password' %} active {% endif %}" href="{% url 'admin_password' %}"><i class="fa fa-key"></i> Change Password</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/log_out' %} active {% endif %}" href="{% url 'log_out' %}"><i class="fa fa-sign-out"></i> Logout</a>
                 </li>
             </ul>
+            <a class="navbar-brand" style="color: white; font-size: 30px; font-weight: bolder; margin-left: 50px; font-family: cursive; margin-right: 100px;" href="">
+                {{ request.user.first_name }} {{ request.user.last_name }}
+            </a>
         </nav>
     </body>
 </html>

@@ -1,0 +1,73 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<style>
+    marquee{
+        margin-top: 5px;
+        margin-top: 25px;
+        font-size: large;
+        font-family:'Times New Roman', Times, serif;
+        background-color: yellow;
+        font-weight: bold;
+    }
+    table{
+        border-width: medium;
+        font-size: 20px;
+    }
+    #company-logo{
+        border-radius: 30px;
+        width: 50px;
+        height: 50px;
+    }
+</style>
+
+<marquee>
+    <i>Latest Jobs</i>
+</marquee>
+<hr>
+
+<div class="container">
+    <table class="table table-hover" id="example">
+        <thead>
+            <tr style="background-color: darkblue; color: white">
+                <th>S.No.</th>
+                <th>Company</th>
+                <th>Domain</th>
+                <th>Role</th>
+                <th>Salary</th>
+                <th>Joining Date</th>
+                <th>Logo</th>
+                <th>Details</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i.recruiter.company }}</td>
+                <td>{{ i.domain }}</td>
+                <td>{{ i.role }}</td>
+                <td>{{ i.salary }}</td>
+                <td>{{ i.joining_date }}</td>
+                {% if i.logo %}
+                    <td><img src = "{{ i.logo.url }}" id="company-logo"></td>
+                {% else %}
+                    <td>No Image Received</td>
+                {% endif %}
+                <td><a href="{{ i.job_description_file.url }}">Download</a></td>
+                <td>
+                    <a href="{% url 'user_login' %}" class='btn btn-primary btn-sm'>Apply</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% include 'footer.html' %}

@@ -4,6 +4,111 @@
 
 {% include 'recruiter_navigation.html' %}
 
+
+<style>
+    marquee{
+        margin-top: 5px;
+        margin-top: 25px;
+        font-size: large;
+        font-family:'Times New Roman', Times, serif;
+        background-color: yellow;
+        font-weight: bold;
+    }
+    .update_profile{
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        margin-top: 15px;
+        padding: 15px;
+        font-size: larger;
+        font-weight: bold;
+    }
+    .submit{
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        margin: auto;
+        display: block;
+        padding: 15px;
+        margin-top: 25px;
+        border-radius: 15px;
+        border: black;
+    }
+    h4{
+        text-align: center;
+        padding-top: 15px;
+    }
+    .form-control{
+        width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #note{
+        font-size: larger;
+        text-decoration: none;
+        color:black;
+    }
+    #image{
+        padding-top: 100px;
+    }
+</style>
+
+<marquee>
+    <i>Your Profile</i>
+</marquee>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div id="image">
+                    <img src={{ current_recruiter.image.url }} style="width: 250px; height: 250px; border-radius:50%;">
+                    <figcaption style="padding-top: 25px;" id="note">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ current_recruiter.user.username }}</figcaption>
+                    <!-- <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="file" class="form-control" name="image" style="width:250px; text-align: center; margin-right: 165px;">
+                    </form> -->
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <form class="container mt-5" name="update_profile" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <h4>First Name:</h4>
+                        <input type="text" class="form-control" name="firstname" value="{{ current_recruiter.user.first_name }}" required>
+                        <h4>Last Name:</h4>
+                        <input type="text" class="form-control" name="lastname" value="{{ current_recruiter.user.last_name }}" required>
+                        <h4>Username:</h4>
+                        <input type="int" class="form-control" name="username" value="{{ current_recruiter.user.username }}" required>
+                        <h4>Company:</h4>
+                        <input type="text" class="form-control" name="company" value="{{ current_recruiter.company }}" required>
+                        <h4>Email</h4>
+                        <input type="text" class="form-control" name="email" value="{{ current_recruiter.user.email }}" required>
+                        <h4>Contact Number:</h4>
+                        <input type="text" class="form-control" name="contact" max_length = 10 value="{{ current_recruiter.mobile }}" required>
+                        <h4>Profile Picture</h4>
+                        <input type="file" class="form-control" name="image">
+                        <button type="submit" class='submit'>Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
 {% include 'footer.html' %}
+
+{% ifequal mistake "no" %}
+    <script>
+        alert("Profile Updated Successfully")
+        window.location = ('{% url "recruiter_home" %}')
+    </script>
+{% endifequal %}
+
+{% ifequal mistake "yes" %}
+    <script>
+        alert("Something Went Wrong!")
+    </script>
+{% endifequal %}
 
 {% endblock %}

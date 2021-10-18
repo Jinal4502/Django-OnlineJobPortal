@@ -1,0 +1,74 @@
+{% load static %}
+
+{% include 'user_navigation.html' %}
+
+{% block body %}
+
+<style>
+    marquee{
+        margin-top: 5px;
+        margin-top: 25px;
+        font-size: large;
+        font-family:'Times New Roman', Times, serif;
+        background-color: yellow;
+        font-weight: bold;
+    }
+    #submit{
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        display: block;
+        padding: 15px;
+        margin-top: 25px;
+        border-radius: 15px;
+        border: black;
+        margin: auto;
+    }
+</style>
+
+<marquee>
+    <i>Match Your Resume To Job Description</i>
+</marquee>
+<hr>
+
+<div class="container shadow-lg py-2 mb-2 mt-2" style="width: 550px; text-align: center;">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+            <label><h3>Resume</h3></span></label>
+            <input type="file" class="form-control" name="resume">
+        </div>
+        <div class="form-row">
+            <label><h3>Job Description</h3></label>
+            <input type="file" class="form-control" name="job_description">
+        </div>
+        <br>
+        <input type="submit" value="Upload" id="submit"><br>
+        <h6>Files must be in docx format</h6>
+    </form>
+</div>
+
+{% if resume_score %}
+    <div class="conatiner">
+        <h1>The Resume Matching Score is:</h1>
+        <h1>{{ resume_score }}</h1>
+    </div>
+{% endif %}
+
+<!-- 
+{% ifequal mistake "no" %}
+<script>
+    alert("Applied for Job Successfully!")
+    window.location = ("{% url 'applications_generated' %}")
+</script>
+{% endifequal %}
+{% ifequal mistake "yes" %}
+<script>
+    alert("Something went wrong!")
+</script>
+{% endifequal %} -->
+
+
+{% endblock %}
+
+{% include 'footer.html' %}

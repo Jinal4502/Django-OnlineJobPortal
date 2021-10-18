@@ -1,0 +1,76 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<style>
+    marquee{
+        margin-top: 5px;
+        margin-top: 25px;
+        font-size: large;
+        font-family:'Times New Roman', Times, serif;
+        background-color: yellow;
+        font-weight: bold;
+    }
+    .contact-form{
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        margin-top: 15px;
+        padding: 15px;
+        font-size: larger;
+        font-weight: bold;
+    }
+    .submit{
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        margin: auto;
+        display: block;
+        padding: 15px;
+        margin-top: 25px;
+        border-radius: 15px;
+        border: black;
+    }
+    h1{
+        text-align: center;
+        color: blue;
+        margin-top: 25px;
+        font-style: italic;
+        font-family: cursive;
+        background-color: whitesmoke;
+    }
+</style>
+
+<marquee>
+    <i>Contact Us</i>
+</marquee>
+
+<body>
+    <h1>We would love to hear from you!!</h1>
+    <form method="POST" class="contact-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class='submit'>Submit</button>
+    </form>
+</body>
+
+
+{% include 'footer.html' %}
+
+{% ifequal mistake "no" %}
+<script>
+    alert("Thank you for your valuable feedback!")
+    window.location = ('{% url "contactus" %}')
+</script>
+{% endifequal %}
+
+{% ifequal mistake "yes" %}
+<script>
+    alert("Something went wrong")
+    window.location = ('{% url "contactus" %}')
+</script>
+{% endifequal %}
+
+{% endblock %}

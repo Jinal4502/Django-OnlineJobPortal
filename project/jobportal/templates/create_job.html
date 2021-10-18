@@ -1,0 +1,72 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'recruiter_navigation.html' %}
+
+
+<style>
+    marquee{
+        margin-top: 5px;
+        margin-top: 25px;
+        font-size: large;
+        font-family:'Times New Roman', Times, serif;
+        background-color: yellow;
+        font-weight: bold;
+    }
+    .createjob-form{
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        margin-top: 15px;
+        padding: 15px;
+        font-size: larger;
+        font-weight: bold;
+    }
+    .submit{
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        margin: auto;
+        display: block;
+        padding: 15px;
+        margin-top: 25px;
+        border-radius: 15px;
+        border: black;
+    }
+</style>
+
+<marquee>
+    <i>Create Job</i>
+</marquee>
+
+<body>
+    <form method="POST" class="createjob-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if error %}
+            <div class="alert alert-danger">
+                <strong>{{ error }}</strong>
+            </div>
+        {% endif %}
+        {{ form.as_p }}
+        <button type="submit" class='submit'>Create Job</button>
+    </form>
+    <h4 style="text-align: center;">Job description file's format must be .docx</h4>
+</body>
+
+{% include 'footer.html' %}
+
+{% ifequal mistake "no" %}
+    <script>
+        alert("Job Created Successfully")
+        window.location = ('{% url "create_job" %}')
+    </script>
+{% endifequal %}
+
+{% ifequal mistake "yes" %}
+    <script>
+        alert("Something Went Wrong!")
+    </script>
+{% endifequal %}
+
+{% endblock %}

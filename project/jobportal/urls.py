@@ -25,6 +25,24 @@ urlpatterns = [
     path('all_recruiters',  views.all_recruiters, name='all_recruiters'),
     path('accept_recruiter/<int:pid>', views.accept_recruiter, name='accept_recruiter'),
     path('reject_recruiter/<int:pid>', views.reject_recruiter, name='reject_recruiter'),
+    path('delete_recruiter/<int:pid>', views.delete_recruiter, name='delete_recruiter'),
+    path('admin_password', views.admin_password, name='admin_password'),
+    path('recruiter_password', views.recruiter_password, name='recruiter_password'),
+    path('user_password', views.user_password, name='user_password'),
+    path('create_job', views.create_job, name='create_job'),
+    path('created_jobs', views.created_jobs, name='created_jobs'),
+    path('edit_job/<int:pid>', views.edit_job, name='edit_job'),
+    path('delete_job/<int:pid>', views.delete_job, name='delete_job'),
+    path('latest_jobs', views.latest_jobs, name='latest_jobs'),
+    path('user_latest_jobs', views.user_latest_jobs, name='user_latest_jobs'),
+    path('job_details/<int:pid>', views.job_details, name='job_details'),
+    path('apply/<int:pid>', views.apply, name='apply'),
+    path('applications_generated', views.applications_generated, name='applications_generated'),
+    path('applications_received', views.applications_received, name='applications_received'),
+    path('contactus', views.contactus, name='contactus'),
+    path('newsletter_subscribers', views.newsletter_subscribers, name='newsletter_subscribers'),
+    path('delete_sub/<int:pid>', views.delete_sub, name='delete_sub'),
+    path('resume_matcher', views.resume_matcher, name='resume_matcher')
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # if settings.DEBUG:
 #     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

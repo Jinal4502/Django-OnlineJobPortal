@@ -4,6 +4,47 @@
 
 {% include 'admin_navigation.html' %}
 
+<style>
+    .mydiv:hover{
+        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        transform:translateY(-10px);
+    }
+    marquee{
+        margin-top: 5px;
+        margin-top: 25px;
+        font-size: large;
+        font-family:'Times New Roman', Times, serif;
+        background-color: yellow;
+        font-weight: bold;
+    }
+    #count{
+        font-size: larger;
+    }
+</style>
+
+<marquee>
+    <i>Admin Home Page</i>
+</marquee>
+<hr>
+
+<div class="container">
+    <br><br>
+    <div class="row">
+        <div class="col sm-6 mydiv">
+            <h4 class="text-center"><i class="fa fa-users"></i> Users</h4>
+            <p class="text-center" id="count"><b>{{ user_count }}</b></p>
+        </div>
+        <div class="col sm-6 mydiv">
+            <h4 class="text-center"><i class="fa fa-user"></i> Recruiters</h4>
+            <p class="text-center" id="count"><b>{{ recruiter_count }}</b></p>
+        </div>
+        <div class="col sm-6 mydiv">
+            <h4 class="text-center"><i class="fa fa-user"></i> Newsletter Subscribers</h4>
+            <p class="text-center" id="count"><b>{{ subscriber_count }}</b></p>
+        </div>
+    </div>
+</div>
+
 {% include 'footer.html' %}
 
 {% endblock %}

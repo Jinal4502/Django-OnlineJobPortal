@@ -1,0 +1,66 @@
+{% load static %}
+
+{% include 'user_navigation.html' %}
+
+{% block body %}
+
+<style>
+    marquee{
+        margin-top: 5px;
+        margin-top: 25px;
+        font-size: large;
+        font-family:'Times New Roman', Times, serif;
+        background-color: yellow;
+        font-weight: bold;
+    }
+    #apply{
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        display: block;
+        padding: 15px;
+        margin-top: 25px;
+        border-radius: 15px;
+        border: black;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+</style>
+
+<marquee>
+    <i>Applications Generated</i>
+</marquee>
+<hr>
+
+{% for application in applications_generated %}
+    <div class="container shadow-lg py-2 mb-2 mt-2">
+        <div class="row">
+            <div class="col-md-4">
+                <img src = "{{ application.job.logo.url }}" style="height: 250px; width:250px; border-radius: 50%;">
+            </div>
+            <div class="col-md-4">
+                <h2>{{ application.job.role }}</h2>
+                <p>{{ application.job.recruiter.company }}</p>
+                <h5>
+                    <i class="fa fa-map-marker"></i> {{ application.job.location }}&nbsp&nbsp&nbsp
+                    <i class="fa fa-calendar"> {{ application.job.job_creation_date }}</i>
+                    <br><br>
+                </h5>
+            </div>
+            <div class="col-md-4">
+                <h3>Job Description</h3>
+                <p>{{ application.job.description }}</p>
+                <h3>Required Skills</h3>
+                <p>{{ application.job.skillset }}</p>
+                <h3>Joining Date</h3>
+                <p>{{ application.job.joining_date }}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
+
+{% include 'footer.html' %}

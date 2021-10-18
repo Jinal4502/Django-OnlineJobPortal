@@ -61,6 +61,7 @@
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown"  style="color: black">Change Status</a>
                         <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'delete_recruiter' i.user.id %}"  style="color: black">Delete</a>
                             <a class="dropdown-item" href="{% url 'accept_recruiter' i.id %}">Accept</a>
                             <a class="dropdown-item" href="{% url 'reject_recruiter' i.id %}">Reject</a>
                         </div>

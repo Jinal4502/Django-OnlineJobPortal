@@ -1,0 +1,131 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'recruiter_navigation.html' %}
+
+
+<style>
+    marquee{
+        margin-top: 5px;
+        margin-top: 25px;
+        font-size: large;
+        font-family:'Times New Roman', Times, serif;
+        background-color: yellow;
+        font-weight: bold;
+    }
+    .editjob-form{
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        margin-top: 15px;
+        padding: 15px;
+        font-size: larger;
+        font-weight: bold;
+    }
+    .submit{
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        margin: auto;
+        display: block;
+        padding: 15px;
+        margin-top: 25px;
+        border-radius: 15px;
+        border: black;
+    }
+    h4{
+        text-align: center;
+        padding-top: 15px;
+    }
+    .form-control{
+        width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #logo{
+        padding-bottom: 15px;
+        text-align: center;
+    }
+    #note{
+        font-size: small;
+        color: red;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 15px;
+    }
+    .submit{
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        margin: auto;
+        display: block;
+        padding: 15px;
+        margin-top: 25px;
+        border-radius: 15px;
+        border: black;
+    }
+</style>
+
+<marquee>
+    <i>Edit Job Details</i>
+</marquee>
+
+<body>
+    <!-- <form method="POST" class="editjob-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if error %}
+            <div class="alert alert-danger">
+                <strong>{{ error }}</strong>
+            </div>
+        {% endif %}
+        {{ form.as_p }}
+        {{ form.fields.domain.initial }}
+        <button type="submit" class='submit'>Save</button> -->
+        <form class="container mt-5" name="edit_job" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <h4>Domain:</h4>
+                <input type="text" class="form-control" name="domain" value="{{ current_job_data.domain }}" required>
+                <h4>Role:</h4>
+                <input type="text" class="form-control" name="role" value="{{ current_job_data.role }}" required>
+                <h4>Skillset:</h4>
+                <input type="int" class="form-control" name="skillset" value="{{ current_job_data.skillset }}" required>
+                <h4>Salary:</h4>
+                <input type="text" class="form-control" name="salary" value="{{ current_job_data.salary }}" required>
+                <h4>Joining Date:</h4>
+                <div id="note">[{{ current_job_data.joining_date }}]</div>
+                <input type="date" class="form-control" name="joining_date" value="{{ current_job_data.joining_date }}" required>
+                <h4>Location:</h4>
+                <input type="text" class="form-control" name="location" value="{{ current_job_data.location }}" required>
+                <h4>Company Logo:</h4>
+                <div id="note"> [Leave it blank to use the same logo]</div>
+                <div id="logo"><img src={{ current_job_data.logo.url }} width="100px" height="100px"></div>
+                <input type="file" class="form-control" name="logo">
+                <h4>Description:</h4>
+                <input type="text" class="form-control" name="description" value="{{ current_job_data.description }}" required>
+                <h4>Job Description File</h4>
+                <input type="file" class="form-control" name="job_description_file">
+                <button type="submit" class='submit'>Save Changes</button>
+            </div>
+
+        </form>
+</body>
+
+{% include 'footer.html' %}
+
+{% ifequal mistake "no" %}
+    <script>
+        alert("Job Details Updated Successfully")
+        window.location = ('{% url "created_jobs" %}')
+    </script>
+{% endifequal %}
+
+{% ifequal mistake "yes" %}
+    <script>
+        alert("Something Went Wrong!")
+    </script>
+{% endifequal %}
+
+{% endblock %}
